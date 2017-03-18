@@ -43,8 +43,8 @@ wlanInterface.transmitSpeed = 0
 
 
 
-# Define 2 different node groups
-Scenario.nrofHostGroups = 2
+# Define 5 different node groups
+Scenario.nrofHostGroups = 5
 
 ## Group-specific settings:
 # groupID : Group's identifier. Used as the prefix of host names
@@ -67,7 +67,7 @@ Scenario.nrofHostGroups = 2
 
 
 # Common settings for all groups
-Group.movementModel = ShortestPathMapBasedMovement
+# Group.movementModel = ShortestPathMapBasedMovement
 Group.router = EpidemicRouter
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
@@ -79,22 +79,42 @@ Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
 Group.msgTtl = 300
 
-Group.nrofHosts = 4
+Group.nrofHosts = 1
 
 # group1 (pedestrians) specific settings
-Group1.groupID = C1_
-Group1.nrofHosts = 4
+Group1.groupID = DB1_
+Group1.nrofHosts = 1
+Group1.movementModel = StationaryMovement
+Group1.nodeLocation = 1200,1200
 
 
-# group2 specific settings
-Group2.groupID = C2_
-# cars can drive only on roads
-Group2.okMaps = 1
-# 10-50 km/h
-Group2.speed = 2.7, 13.9
+# group2 (pedestrians) specific settings
+Group2.groupID = DB2_
 Group2.nrofHosts = 1
+Group2.movementModel = StationaryMovement
+Group2.nodeLocation = 1800,1200
 
 
+# group3 (pedestrians) specific settings
+Group3.groupID = DB3_
+Group3.nrofHosts = 1
+Group3.movementModel = StationaryMovement
+Group3.nodeLocation = 1400,1800
+
+
+# group4 (pedestrians) specific settings
+Group4.groupID = DB4_
+Group4.nrofHosts = 1
+Group4.movementModel = StationaryMovement
+Group4.nodeLocation = 2200,1900
+
+# group5 (DM) specific settings
+Group5.groupID = DM_
+# cars can drive only on roads
+Group5.okMaps = 1
+# 10-50 km/h
+Group5.speed = 2.7, 13.9
+Group5.nrofHosts = 1
 
 ## Message creation parameters
 # How many event generators
