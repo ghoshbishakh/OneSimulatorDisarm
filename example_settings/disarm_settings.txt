@@ -71,7 +71,7 @@ Scenario.nrofHostGroups = 5
 Group.router = EpidemicRouter
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
-# All nodes have the bluetooth interface
+# All nodes have the wlan interface
 Group.nrofInterfaces = 1
 Group.interface1 = wlanInterface
 # Walking speeds
@@ -81,35 +81,36 @@ Group.msgTtl = 300
 
 Group.nrofHosts = 1
 
-# group1 (pedestrians) specific settings
+# group1 (DB) specific settings
 Group1.groupID = DB1_
 Group1.nrofHosts = 1
 Group1.movementModel = StationaryMovement
 Group1.nodeLocation = 1200,1200
 
 
-# group2 (pedestrians) specific settings
+# group2 (DB) specific settings
 Group2.groupID = DB2_
 Group2.nrofHosts = 1
 Group2.movementModel = StationaryMovement
 Group2.nodeLocation = 1800,1200
 
 
-# group3 (pedestrians) specific settings
+# group3 (DB) specific settings
 Group3.groupID = DB3_
 Group3.nrofHosts = 1
 Group3.movementModel = StationaryMovement
 Group3.nodeLocation = 1400,1800
 
 
-# group4 (pedestrians) specific settings
+# group4 (DB) specific settings
 Group4.groupID = DB4_
 Group4.nrofHosts = 1
 Group4.movementModel = StationaryMovement
-Group4.nodeLocation = 2200,1900
+Group4.nodeLocation = 2200,2000
 
 # group5 (DM) specific settings
 Group5.groupID = DM_
+Group5.movementModel = ShortestPathMapBasedMovement
 # cars can drive only on roads
 Group5.okMaps = 1
 # 10-50 km/h
