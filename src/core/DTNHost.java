@@ -81,6 +81,8 @@ public class DTNHost implements Comparable<DTNHost> {
 
 		this.location = movement.getInitialLocation();
 
+		System.out.println("----- " + this.toString() + "  Position ----- : " + this.getLocation());
+
 		this.nextTimeToMove = movement.nextPathAvailable();
 		this.path = null;
 
@@ -380,6 +382,7 @@ public class DTNHost implements Comparable<DTNHost> {
 		if (!isMovementActive() || SimClock.getTime() < this.nextTimeToMove) {
 			return;
 		}
+
 		if (this.destination == null) {
 			if (!setNextWaypoint()) {
 				return;
@@ -414,6 +417,8 @@ public class DTNHost implements Comparable<DTNHost> {
 	 * should wait
 	 */
 	private boolean setNextWaypoint() {
+		//System.out.println("----- Next Waypoint of " + this.toString() +  " -----");
+		System.out.println(this.getLocation());
 		if (path == null) {
 			path = movement.getPath();
 		}
