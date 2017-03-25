@@ -418,7 +418,7 @@ public class DTNHost implements Comparable<DTNHost> {
 	 */
 	private boolean setNextWaypoint() {
 		//System.out.println("----- Next Waypoint of " + this.toString() +  " -----");
-		System.out.println(this.getLocation());
+
 		if (path == null) {
 			path = movement.getPath();
 		}

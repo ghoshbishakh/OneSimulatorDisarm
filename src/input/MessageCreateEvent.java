@@ -14,6 +14,12 @@ import core.World;
 public class MessageCreateEvent extends MessageEvent {
 	private int size;
 	private int responseSize;
+	private double lat;
+	private double lon;
+	private String timeStamp;
+	private String type;
+	private boolean extraParams = false;
+
 
 	/**
 	 * Creates a message creation event with a optional response request
@@ -32,6 +38,19 @@ public class MessageCreateEvent extends MessageEvent {
 		this.responseSize = responseSize;
 	}
 
+	// Added Disarm
+	public MessageCreateEvent(int from, int to, String id, int size,
+							  int responseSize, double time, double lat, double lon, String timeStamp, String type) {
+		super(from,to, id, time);
+		this.size = size;
+		this.responseSize = responseSize;
+		this.lat = lat;
+		this.lon = lon;
+		this.timeStamp = timeStamp;
+		this.type = type;
+		this.extraParams = true;
+	}
+
 
 	/**
 	 * Creates the message this event represents.
@@ -41,9 +60,26 @@ public class MessageCreateEvent extends MessageEvent {
 		DTNHost to = world.getNodeByAddress(this.toAddr);
 		DTNHost from = world.getNodeByAddress(this.fromAddr);
 
-		Message m = new Message(from, to, this.id, this.size);
-		m.setResponseSize(this.responseSize);
-		from.createNewMessage(m);
+		// Added Disarm
+		if(extraParams == true)
+		{
+			Message m = new Message(from, to, this.id, this.size);
+			m.addProperty("Lat",this.lat);
+			m.addProperty("Lon",this.lon);
+			m.addProperty("TimeStamp",this.timeStamp);
+			m.addProperty("Type",this.type);
+
+			m.setResponseSize(this.responseSize);
+			from.createNewMessage(m);
+		}
+		else
+		{
+			Message m = new Message(from, to, this.id, this.size);
+			m.setResponseSize(this.responseSize);
+			from.createNewMessage(m);
+
+		}
+
 	}
 
 	@Override

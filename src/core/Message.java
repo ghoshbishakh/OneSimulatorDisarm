@@ -317,7 +317,6 @@ public class Message implements Comparable<Message> {
 			   that don't use the property feature  */
 			this.properties = new HashMap<String, Object>();
 		}
-
 		this.properties.put(key, value);
 	}
 

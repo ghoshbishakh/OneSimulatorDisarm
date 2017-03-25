@@ -331,6 +331,7 @@ public abstract class MessageRouter {
 	public int receiveMessage(Message m, DTNHost from) {
 		Message newMessage = m.replicate();
 
+		//System.out.println("LAT " + newMessage.getProperty("Lat").toString());
 		this.putToIncomingBuffer(newMessage, from);
 		newMessage.addNodeOnPath(this.host);
 

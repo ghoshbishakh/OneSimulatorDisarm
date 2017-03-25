@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.Integer;
 import java.lang.NumberFormatException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -110,6 +111,12 @@ public class StandardEventsReader implements ExternalEventsReader {
 			int hostAddr;
 			int host2Addr;
 
+			// Added Disarm
+			double lat;
+			double lon;
+			String timeStamp;
+			String type;
+
 			try {
 				time = lineScan.nextDouble();
 				action = lineScan.next();
@@ -161,6 +168,7 @@ public class StandardEventsReader implements ExternalEventsReader {
 					host2Addr = getHostAddress(lineScan.next());
 
 					if (action.equals(CREATE)){
+
 						int size = 0;
 
 						if (lineScan.hasNextInt()){
@@ -172,6 +180,15 @@ public class StandardEventsReader implements ExternalEventsReader {
 							throw new Exception("Invalid number of columns for CREATE event");
 						}
 
+						// Added Disarm
+
+						lat = Double.parseDouble(lineScan.next());
+						lon = Double.parseDouble(lineScan.next());
+						timeStamp = lineScan.next();
+						type = lineScan.next();
+
+						System.out.println("Lat : " + lat + " Lon : " + lon );
+
 						int respSize = 0;
 						if (lineScan.hasNextInt()) {
 							respSize = lineScan.nextInt();
@@ -180,10 +197,12 @@ public class StandardEventsReader implements ExternalEventsReader {
 							respSize = convertToInteger(lineScan.next());
 						}
 						events.add(new MessageCreateEvent(hostAddr, host2Addr,
-								msgId, size, respSize, time));
+								msgId, size, respSize, time, lat, lon, timeStamp, type));
 					}
 					else {
 						int stage = -1;
+
+
 						if (action.equals(SEND)) {
 							stage = MessageRelayEvent.SENDING;
 						}
