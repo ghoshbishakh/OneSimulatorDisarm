@@ -113,8 +113,8 @@ Group4.nodeLocation = 2200,2000
 # group5 (DM) specific settings
 Group5.groupID = DM_
 # Movement model:
-Group5.movementModel = ExternalMovement
-ExternalMovement.file = data/disarm/test_movement.txt
+Group5.movementModel = MapBasedMovement
+#ExternalMovement.file = data/disarm/test_movement.txt
 
 #Group5.routeFile = data/disarm/mule_movement.wkt
 #Group5.routeType = 2
@@ -147,17 +147,17 @@ Events1.filePath = data/disarm/EventGen.txt
 # seed for movement models' pseudo random number generator (default = 0)
 MovementModel.rngSeed = 1
 # World's size for Movement Models without implicit size (width, height; meters)
-MovementModel.worldSize = 4500, 3400
+MovementModel.worldSize = 20000, 15000
 # How long time to move hosts in the world before real simulation
 MovementModel.warmup = 1000
 
 ## Map based movement -movement model specific settings
-MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.nrofMapFiles = 1
 
-MapBasedMovement.mapFile1 = data/roads.wkt
-MapBasedMovement.mapFile2 = data/main_roads.wkt
-MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
-MapBasedMovement.mapFile4 = data/shops.wkt
+MapBasedMovement.mapFile1 = data/disarm/nitdgp.wkt
+#MapBasedMovement.mapFile2 = data/main_roads.wkt
+#MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+#MapBasedMovement.mapFile4 = data/shops.wkt
 
 ## Reports - all report names have to be valid report classes
 
