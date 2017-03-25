@@ -69,6 +69,7 @@ Scenario.nrofHostGroups = 5
 # Common settings for all groups
 # Group.movementModel = ShortestPathMapBasedMovement
 Group.router = PsyncRouter
+PsyncRouter.testTime = 20170325145533
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
 # All nodes have the wlan interface
