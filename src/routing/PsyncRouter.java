@@ -99,13 +99,13 @@ public class PsyncRouter extends ActiveRouter {
 //            System.out.println(msg.getProperty("Lat"));
             // Set initial importance
             msgImportanceMap.put(msg, 0.0);
+
         }
 
         msgImportanceMap = calculateAllImportances();
 
         // Sort according to importance
         Collections.sort(messages, new FilePriorityComparator());
-
         return tryMessagesToConnections(messages, connections);
     }
 
@@ -160,7 +160,6 @@ public class PsyncRouter extends ActiveRouter {
         for(Map.Entry<Message, Double> entry : msgImportanceMap.entrySet()){
             String tileTypeStr = msgTileTypeStrMap.get(entry.getKey());
             int Fij = tileTypeCounts.get(tileTypeStr);
-            System.out.println("Fij: " + Fij);
             double Pij = (double)Fij/(double)totalCount;
 
             // calculate -log(Pij)
@@ -175,7 +174,9 @@ public class PsyncRouter extends ActiveRouter {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             try {
                 originDateTime = dateFormat.parse(entry.getKey().getProperty("TimeStamp").toString());
+
                 currentDateTime = new Date ((long) (testBeginTime.getTime()  + (SimClock.getTime() * 1000)));
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -184,7 +185,7 @@ public class PsyncRouter extends ActiveRouter {
 
             // Calculate Final Importance
             double importanceValue = logPij * Math.pow(2.71828, ((double)(-1.0) * ageInHours));
-            System.out.println("Host: " + this.getHost().getAddress() +  ", Message : " + entry.getKey().getId() +", Importance : " + importanceValue + ", Age :" + ageInSeconds);
+            //System.out.println("Host: " + this.getHost().getAddress() +  ", Message : " + entry.getKey().getId() +", Importance : " + importanceValue + ", Age :" + ageInSeconds);
 
             newMsgImportanceMap.put(entry.getKey(), logPij);
         }

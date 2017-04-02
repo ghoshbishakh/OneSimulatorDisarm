@@ -88,7 +88,7 @@ messageCount = 1
 i = 0
 step_size = 0.0
 while i < noOfMessages:
-	source = random.randint(1,noOfDevices)
+	source = random.randint(0,noOfDevices)
 	destination = random.randint(1,noOfDevices)
 	if source != destination:
 		time_str = datetime.datetime.now()

@@ -8,16 +8,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import core.Settings;
 import core.SimClock;
 import core.SimError;
 import core.SimScenario;
+import routing.PsyncRouter;
 
 /**
  * Abstract superclass for all reports. All settings defined in this class
