@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hridaydutta123/OneSimulatorDisarm.svg?branch=master)](https://travis-ci.org/hridaydutta123/OneSimulatorDisarm)
+
 # The ONE
 
 The Opportunistic Network Environment simulator.
