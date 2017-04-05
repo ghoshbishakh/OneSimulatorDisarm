@@ -38,10 +38,9 @@ public class EventLogReport extends Report
 	 */
 	private void processEvent(final String action, final DTNHost host1,
 			final DTNHost host2, final Message message, final String extra) {
-
 		write(getSimTime() + " " + action + " " + (host1 != null ? host1 : "")
 				+ (host2 != null ? (" " + host2) : "")
-				+ (message != null ? " " + message : "") + (message != null ? " " + message.getProperty("Type") : "") + (PsyncRouter.testRunningTime)
+				+ (message != null ? " " + message : "") + (message != null ? " " + message.getProperty("Type") : "")
 				+ (extra != null ? " " + extra : ""));
 	}
 
