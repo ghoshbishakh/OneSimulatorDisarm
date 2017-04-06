@@ -29,18 +29,24 @@ Scenario.endTime = 3000
 
 
 # WIFI INTERFACE
-wlanInterface.type = DistanceCapacityInterface
+apInterface.type = APInterface
 
 # values from http://www.xirrus.com/cdn/pdf/wifi-demystified/documents_posters_range_plotter
 # 0-50ft:54Mbps, 75-100ft:48 Mbps, 125ft:36Mbps, 150ft:24 Mbps, 175ft:18Mbps,
 # 200ft:12Mbps, 225ft:9Mbps, 250ft:6Mbps, 275ft:2Mbps, 300ft:1Mbps
 
-wlanInterface.transmitSpeeds = 6750k, 6750k, 6750k, 6000k, 6000k, 4500k, 3000k, 2250k, 1500k, 1125k, 750k, 250k, 125k
-wlanInterface.transmitRange = 91
+apInterface.transmitSpeeds = 6750k, 6750k, 6750k, 6000k, 6000k, 4500k, 3000k, 2250k, 1500k, 1125k, 750k, 250k, 125k
+apInterface.transmitRange = 10
 
 # dummy speed
-wlanInterface.transmitSpeed = 0
+apInterface.transmitSpeed = 0
 
+
+# transmit speed of 2 Mbps = 250kBps
+wlanInterface.type = DistanceCapacityInterface
+wlanInterface.transmitRange = 10
+wlanInterface.transmitSpeed = 0
+wlanInterface.transmitSpeeds = 6750k, 6750k, 6750k, 6000k, 6000k, 4500k, 3000k, 2250k, 1500k, 1125k, 750k, 250k, 125k
 
 
 # Define 5 different node groups
@@ -73,8 +79,8 @@ PsyncRouter.testTime = 20170325145533
 Group.bufferSize = 5M
 Group.waitTime = 0, 120
 # All nodes have the wlan interface
-Group.nrofInterfaces = 1
-Group.interface1 = wlanInterface
+#Group.nrofInterfaces = 1
+#Group.interface1 = apInterface
 # Walking speeds
 Group.speed = 0.5, 1.5
 # Message TTL of 300 minutes (5 hours)
@@ -85,6 +91,8 @@ Group.nrofHosts = 1
 # group1 (DB) specific settings
 Group1.groupID = DB1_
 Group1.nrofHosts = 1
+Group1.nrofInterfaces = 1
+Group1.interface1 = apInterface
 Group1.movementModel = StationaryMovement
 Group1.nodeLocation = 1200,1200
 
@@ -93,6 +101,8 @@ Group1.nodeLocation = 1200,1200
 # group2 (DB) specific settings
 Group2.groupID = DB2_
 Group2.nrofHosts = 1
+Group2.nrofInterfaces = 1
+Group2.interface1 = apInterface
 Group2.movementModel = StationaryMovement
 Group2.nodeLocation = 1800,1200
 
@@ -100,6 +110,8 @@ Group2.nodeLocation = 1800,1200
 # group3 (DB) specific settings
 Group3.groupID = DB3_
 Group3.nrofHosts = 1
+Group3.nrofInterfaces = 1
+Group3.interface1 = apInterface
 Group3.movementModel = StationaryMovement
 Group3.nodeLocation = 1400,1800
 
@@ -107,6 +119,8 @@ Group3.nodeLocation = 1400,1800
 # group4 (DB) specific settings
 Group4.groupID = DB4_
 Group4.nrofHosts = 1
+Group4.nrofInterfaces = 1
+Group4.interface1 = apInterface
 Group4.movementModel = StationaryMovement
 Group4.nodeLocation = 2200,2000
 
@@ -115,6 +129,8 @@ Group5.groupID = DM_
 # Movement model:
 Group5.movementModel = ExternalMovement
 ExternalMovement.file = data/disarm/test_movement.txt
+Group5.nrofInterfaces = 1
+Group5.interface1 = wlanInterface
 
 #Group5.routeFile = data/disarm/mule_movement.wkt
 #Group5.routeType = 2

@@ -46,8 +46,8 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
     variable. Value type: integer */
 	public static final String SPEED_ID = "Network.speed";
 
-	private static final int CON_UP = 1;
-	private static final int CON_DOWN = 2;
+	protected static final int CON_UP = 1;
+	protected static final int CON_DOWN = 2;
 
 	private static Random rng;
 	protected DTNHost host = null;
@@ -403,7 +403,7 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
 	 * @param type Type of the change (e.g. {@link #CON_DOWN} )
 	 * @param otherHost The other host on the other end of the connection.
 	 */
-	private void notifyConnectionListeners(int type, DTNHost otherHost) {
+	public void notifyConnectionListeners(int type, DTNHost otherHost) {
 		if (this.cListeners == null) {
 			return;
 		}
@@ -512,6 +512,24 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
 	public String toString() {
 		return this.address + " of " + this.host +
 			". Connections: " +	this.connections;
+	}
+	/**
+	 * Returns the transmit speed of this network layer
+	 * @return the transmit speed
+	 */
+	public int getTransmitSpeed() {
+		return this.transmitSpeed;
+	}
+	public boolean acceptingConnections() {
+		return isActive();
+	}
+	public boolean removeConnection(Connection con, NetworkInterface initiator)
+	{
+		return this.connections.remove(con);
+	}
+	public int connectionCount()
+	{
+		return this.connections.size();
 	}
 
 }
